@@ -17,7 +17,7 @@ function Navbar() {
         Meals
       </NavLink>
       <NavLink
-        to="/about"
+        to="/cocktails"
         className={({ isActive }) =>
           `flex-1 text-center py-2 font-medium transition-all duration-300 ${
             isActive
@@ -29,7 +29,7 @@ function Navbar() {
         Cocktails
       </NavLink>
       <NavLink
-        to="/services"
+        to="/potter"
         className={({ isActive }) =>
           `flex-1 text-center py-2 font-medium transition-all duration-300 ${
             isActive
@@ -38,10 +38,10 @@ function Navbar() {
           }`
         }
       >
-        Services
+        Potter
       </NavLink>
       <NavLink
-        to="/contact"
+        to="/bank"
         className={({ isActive }) =>
           `flex-1 text-center py-2 font-medium transition-all duration-300 ${
             isActive
@@ -50,7 +50,7 @@ function Navbar() {
           }`
         }
       >
-        Contact
+        Bank
       </NavLink>
     </nav>
   );
