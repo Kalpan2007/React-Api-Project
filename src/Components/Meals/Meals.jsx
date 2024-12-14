@@ -37,7 +37,7 @@ const Meals = () => {
       </div>
 
       {/* Display Meals */}
-      <div className="meals-list grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+      <div className="meals-list grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4  bg-[#c35a04ab]">
         {meals.length > 0 ? (
           meals.map((meal) => (
             <div

@@ -37,7 +37,7 @@ const PotterAPI = () => {
   }, [language, selectedSection]);
 
   return (
-    <div className="potter-api-container">
+    <div className="potter-api-container  bg-[#c35a04ab]">
       {/* Language Selector */}
       <div className="language-selector bg-[#e9d8a6] p-4 rounded shadow mb-4">
         <h2 className="text-center text-xl font-bold text-[#ca6702]">Select Language</h2>
@@ -79,9 +79,9 @@ const PotterAPI = () => {
 
       {/* Display Books */}
       {selectedSection === "books" && (
-        <div className="books-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="books-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  ">
           {books.map((book) => (
-            <div key={book.title} className="book-item item-background border rounded shadow p-4 bg-white">
+            <div key={book.title} className="book-item item-background border rounded shadow p-4  bg-[#e9d8a6]  border-[#ca6702]">
               <img
                 src={book.cover}
                 alt={book.title}
@@ -102,7 +102,7 @@ const PotterAPI = () => {
           {characters.map((character) => (
             <div
               key={character.fullName}
-              className="character-item item-background border rounded shadow p-4 bg-white"
+              className="character-item item-background border rounded shadow p-4 bg-[#e9d8a6]  border-[#ca6702]"
             >
               <img
                 src={character.image}
@@ -130,7 +130,7 @@ const PotterAPI = () => {
       {selectedSection === "houses" && (
         <div className="houses-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {houses.map((house) => (
-            <div key={house.house} className="house-item item-background border rounded shadow p-4 bg-white">
+            <div key={house.house} className="house-item item-background border rounded shadow p-4 bg-[#e9d8a6]  border-[#ca6702]">
               <h3 className="text-lg font-bold text-[#ca6702]">{house.house} {house.emoji}</h3>
               <p className="text-gray-600 text-sm">Founder: {house.founder}</p>
               <p className="text-gray-600 text-sm">Animal: {house.animal}</p>
@@ -144,7 +144,7 @@ const PotterAPI = () => {
       {selectedSection === "spells" && (
         <div className="spells-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {spells.map((spell) => (
-            <div key={spell.spell} className="spell-item item-background border rounded shadow p-4 bg-white">
+            <div key={spell.spell} className="spell-item item-background border rounded shadow p-4 bg-[#e9d8a6]  border-[#ca6702]">
               <h3 className="text-lg font-bold text-[#ca6702]">{spell.spell}</h3>
               <p className="text-gray-600 text-sm">Use: {spell.use}</p>
             </div>

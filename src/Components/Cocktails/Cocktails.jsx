@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 function Cocktails() {
-    const [cocktails, setCocktails] = useState([]); 
-    const [searchTerm, setSearchTerm] = useState(""); 
-    const [selectedCocktail, setSelectedCocktail] = useState(null); 
-    const [categories, setCategories] = useState([]); 
+    const [cocktails, setCocktails] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedCocktail, setSelectedCocktail] = useState(null);
+    const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
 
-    
     useEffect(() => {
         fetch("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list")
             .then((response) => response.json())
             .then((data) => setCategories(data.drinks || []));
     }, []);
 
-    
     useEffect(() => {
         const url = searchTerm.trim()
             ? `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`
@@ -35,7 +33,7 @@ function Cocktails() {
     };
 
     return (
-        <div className="cocktails-container">
+        <div className="cocktails-container bg-[#c35a04ab]">
             {/* Search and Filter Section */}
             <div className="search-bar bg-[#e9d8a6] p-4 rounded shadow">
                 <h2 className="text-center text-lg font-bold text-[#ca6702]">Discover Cocktails</h2>
@@ -62,17 +60,17 @@ function Cocktails() {
                     className="mt-4 w-full bg-[#ca6702] text-white py-2 rounded hover:bg-[#b35602]"
                     onClick={fetchRandomCocktail}
                 >
-                    Surprise Me!
+                    Suggest A Cocktail!
                 </button>
             </div>
 
             {/* Display Cocktails */}
-            <div className="cocktails-list grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+            <div className="cocktails-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4">
                 {cocktails.length > 0 ? (
                     cocktails.map((cocktail) => (
                         <div
                             key={cocktail.idDrink}
-                            className="cocktail-item border border-[#ca6702] p-4 rounded shadow hover:shadow-lg transition cursor-pointer bg-[#e9d8a6]"
+                            className="cocktail-item border border-[#ca6702] p-4 rounded shadow hover:scale-105  hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer bg-[#e9d8a6]"
                             onClick={() => setSelectedCocktail(cocktail)}
                         >
                             <img
