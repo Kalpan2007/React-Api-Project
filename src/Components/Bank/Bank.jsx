@@ -62,13 +62,27 @@ function Bank() {
     // Fetch branches when center is selected
     useEffect(() => {
         if (selectedState && selectedDistrict && selectedCity && selectedCenter) {
-            fetch(
-                `https://bank-apis.justinclicks.com/API/V1/STATE/${selectedState}/${selectedDistrict}/${selectedCity}/${selectedCenter}/${selectedCenter}/`
-            )
-                .then((response) => response.json())
+            const url = `https://bank-apis.justinclicks.com/API/V1/STATE/${selectedState}/${selectedDistrict}/${selectedCity}/${selectedCenter}/${selectedCenter}/`;
+            
+            fetch(url)
+                .then((response) => {
+                    // Check if response is OK (status 200)
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.statusText}`);
+                    }
+                    return response.text();  // Get the response as text first
+                })
                 .then((data) => {
-                    setBranches(data || []);
-                    setBranchError(data.length === 0);
+                    try {
+                        console.log("Raw response:", data);  // Log the raw response
+                        const jsonData = JSON.parse(data); // Manually parse JSON
+                        setBranches(jsonData || []);
+                        setBranchError(jsonData.length === 0);
+                    } catch (error) {
+                        console.error("Error parsing JSON:", error);
+                        setBranches([]);
+                        setBranchError(true);
+                    }
                 })
                 .catch((error) => {
                     console.error("Error fetching branches:", error);
@@ -247,9 +261,6 @@ function Bank() {
                     <p><strong>Contact:</strong> {branchDetails.CONTACT}</p>
                     <p><strong>RTGS:</strong> {branchDetails.RTGS ? "Yes" : "No"}</p>
                     <p><strong>NEFT:</strong> {branchDetails.NEFT ? "Yes" : "No"}</p>
-                    <p><strong>IMPS:</strong> {branchDetails.IMPS ? "Yes" : "No"}</p>
-                    <p><strong>UPI:</strong> {branchDetails.UPI ? "Yes" : "No"}</p>
-                    <p><strong>SWIFT:</strong> {branchDetails.SWIFT || "N/A"}</p>
                 </div>
             )}
         </>

@@ -1,3 +1,20 @@
+// Base URL: https://www.thecocktaildb.com/api/json/v1/1/
+// API Endpoints:
+// list.php?c=list: List all categories.
+// search.php?s=${searchTerm}: Search for cocktails by name.
+// filter.php?c=${category}: Filter cocktails by category.
+// filter.php?a=Alcoholic: Filter alcoholic cocktails.
+// random.php: Fetch a random cocktail.
+// Response Format: JSON object with a drinks key containing an array of cocktail objects.
+// Cocktail Object Structure:
+// idDrink: Unique ID for the cocktail.
+// strDrink: Name of the cocktail.
+// strDrinkThumb: URL of the cocktail's image.
+// strInstructions: Instructions to make the cocktail.
+// strIngredient1, strIngredient2, ..., strIngredient15: Ingredients for the cocktail.
+
+
+
 import React, { useEffect, useState } from "react";
 
 function Cocktails() {
@@ -25,7 +42,7 @@ function Cocktails() {
             .then((data) => setCocktails(data.drinks || []));
     }, [searchTerm, selectedCategory]);
 
-    // Fetch random cocktail
+    
     const fetchRandomCocktail = () => {
         fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
             .then((response) => response.json())
@@ -65,32 +82,32 @@ function Cocktails() {
             </div>
 
             {/* Display Cocktails */}
-            <div className="cocktails-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4">
-                {cocktails.length > 0 ? (
-                    cocktails.map((cocktail) => (
-                        <div
-                            key={cocktail.idDrink}
-                            className="cocktail-item border border-[#ca6702] p-4 rounded shadow hover:scale-105  hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer bg-[#e9d8a6]"
-                            onClick={() => setSelectedCocktail(cocktail)}
-                        >
-                            <img
-                                src={cocktail.strDrinkThumb}
-                                alt={cocktail.strDrink}
-                                className="w-full h-40 object-cover rounded"
-                            />
-                            <h3 className="text-center mt-2 font-semibold text-[#ca6702]">
-                                {cocktail.strDrink}
-                            </h3>
-                        </div>
-                    ))
-                ) : (
-                    <p className="col-span-full text-center text-gray-600">
-                        {searchTerm || selectedCategory !== "All"
-                            ? "No cocktails found. Try searching something else!"
-                            : "Welcome! Start by searching or selecting a category."}
-                    </p>
-                )}
-            </div>
+                <div className="cocktails-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4">
+                    {cocktails.length > 0 ? (
+                        cocktails.map((cocktail) => (
+                            <div
+                                key={cocktail.idDrink}
+                                className="cocktail-item border border-[#ca6702] p-4 rounded shadow hover:scale-105  hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer bg-[#e9d8a6]"
+                                onClick={() => setSelectedCocktail(cocktail)}
+                            >
+                                <img
+                                    src={cocktail.strDrinkThumb}
+                                    alt={cocktail.strDrink}
+                                    className="w-full h-40 object-cover rounded"
+                                />
+                                <h3 className="text-center mt-2 font-semibold text-[#ca6702]">
+                                    {cocktail.strDrink}
+                                </h3>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="col-span-full text-center text-gray-600">
+                            {searchTerm || selectedCategory !== "All"
+                                ? "No cocktails found. Try searching something else!"
+                                : "Welcome! Start by searching or selecting a category."}
+                        </p>
+                    )}
+                </div>
 
             {/* Display Selected Cocktail Details */}
             {selectedCocktail && (
