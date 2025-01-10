@@ -52,6 +52,18 @@ function Navbar() {
       >
         Bank
       </NavLink>
+      <NavLink
+        to="/student"
+        className={({ isActive }) =>
+          `flex-1 text-center py-2 font-medium transition-all duration-300 ${
+            isActive
+              ? "text-black bg-[#ffd700]" // Active: Black text, light gold background
+              : "text-white hover:text-[#222222] hover:bg-[#f4d160]" // Hover: Dark gray text, light yellow background
+          }`
+        }
+      >
+        Students
+      </NavLink>
     </nav>
   );
 }
